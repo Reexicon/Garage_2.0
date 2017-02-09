@@ -1,31 +1,31 @@
 ﻿@model IEnumerable<Garage_2._0.Models.Vehicle>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Garage";
 }
 
-<h2>Index</h2>
+<h2>@ViewBag.Title</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Park Vehicle", "Create")
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.RegistrationNumber)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.VehicleType)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Brand)
+            @Html.DisplayNameFor(model => model.RegistrationNumber)
         </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.Brand)
+        </th>*@
         <th>
             @Html.DisplayNameFor(model => model.Color)
         </th>
-        <th>
+        @*<th>
             @Html.DisplayNameFor(model => model.Wheels)
-        </th>
+        </th>*@
         <th>
             @Html.DisplayNameFor(model => model.WhenParked)
         </th>
@@ -35,20 +35,20 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.RegistrationNumber)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.VehicleType)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Brand)
+            @Html.DisplayFor(modelItem => item.RegistrationNumber)
         </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.Brand)
+        </td>*@
         <td>
             @Html.DisplayFor(modelItem => item.Color)
         </td>
-        <td>
+        @*<td>
             @Html.DisplayFor(modelItem => item.Wheels)
-        </td>
+        </td>*@
         <td>
             @Html.DisplayFor(modelItem => item.WhenParked)
         </td>
