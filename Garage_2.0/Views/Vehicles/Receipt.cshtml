@@ -1,0 +1,73 @@
+﻿@model Garage_2._0.Models.ReceiptModel
+
+@{
+    ViewBag.Title = "Receipt";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div>
+    <h4>Vehicle</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Vehicle.RegistrationNumber )
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Vehicle.RegistrationNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Vehicle.VehicleType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Vehicle.VehicleType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Vehicle.Brand)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Vehicle.Brand)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Vehicle.Color)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Vehicle.Color)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Vehicle.Wheels)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Vehicle.Wheels)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Vehicle.WhenParked)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Vehicle.WhenParked)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Cost )
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cost)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @*@Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |*@
+    @Html.ActionLink("Back to Garage", "Index")
+</p>

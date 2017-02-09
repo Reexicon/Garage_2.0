@@ -10,17 +10,18 @@
     @Html.ActionLink("Park a Vehicle", "Create")
 </p>
 
-@using (Html.BeginForm())
-{
-    <p>
+@*@using (Html.BeginForm())*@
+@using (Html.BeginForm("Index", "Vehicles", FormMethod.Get))
+    {
+    @*<p>
         Find by registration number or color: @Html.TextBox("SearchString")
         <input type="submit" value="Search" />
-    </p>
-    @*<table class="table">
+    </p>*@
+    <table class="table">
         <tr>
-            <th>
-                Vehicle Type:
-            </th>
+            @*<th>
+                Brand:
+            </th>*@
             <th>
                 Registration number:
             </th>
@@ -32,9 +33,6 @@
         </tr>
         <tr>
             <td>
-                @Html.TextBox("SearchType")
-            </td>
-            <td>
                 @Html.TextBox("SearchReg")
             </td>
             <td>
@@ -44,23 +42,23 @@
                 <input type="submit" value="Search" />
             </td>
         </tr>
-    </table>*@
+    </table>
 
 }
 <table class="table">
     <tr>
         <th>
             @*@Html.DisplayNameFor(model => model.VehicleType)*@
-            @Html.ActionLink("Vehicle Type", "Index", new { sortOrder = ViewBag.VehicleTypeSortParm })
+            @Html.ActionLink("Vehicle Type", "Index", new { sortOrder = ViewBag.VehicleTypeSortParm, searchReg = ViewBag.SearchReg, searchColor = ViewBag.SearchColor })
         </th>
         <th>
-            @Html.ActionLink("Registration Number", "Index", new { sortOrder = ViewBag.RegistrationNumberSortParm })
+            @Html.ActionLink("Registration Number", "Index", new { sortOrder = ViewBag.RegistrationNumberSortParm, searchReg = ViewBag.SearchReg, searchColor = ViewBag.SearchColor })
         </th>
         <th>
-            @Html.ActionLink("Color", "Index", new { sortOrder = ViewBag.ColorSortParm })
+            @Html.ActionLink("Color", "Index", new { sortOrder = ViewBag.ColorSortParm, searchReg = ViewBag.SearchReg, searchColor = ViewBag.SearchColor })
         </th>
         <th>
-            @Html.ActionLink("Parked", "Index", new { sortOrder = ViewBag.WhenParkedSortParm })
+            @Html.ActionLink("Parked", "Index", new { sortOrder = ViewBag.WhenParkedSortParm, searchReg = ViewBag.SearchReg, searchColor = ViewBag.SearchColor })
         </th>
         <th></th>
     </tr>
