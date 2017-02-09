@@ -12,22 +12,17 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.VehicleType)
+            @*@Html.DisplayNameFor(model => model.VehicleType)*@
+            @Html.ActionLink("Vehicle Type", "Index", new { sortOrder = ViewBag.VehicleTypeSortParm })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.RegistrationNumber)
+            @Html.ActionLink("Registration Number", "Index", new { sortOrder = ViewBag.RegistrationNumberSortParm })
         </th>
-        @*<th>
-            @Html.DisplayNameFor(model => model.Brand)
-        </th>*@
         <th>
-            @Html.DisplayNameFor(model => model.Color)
+            @Html.ActionLink("Color", "Index", new { sortOrder = ViewBag.ColorSortParm })
         </th>
-        @*<th>
-            @Html.DisplayNameFor(model => model.Wheels)
-        </th>*@
         <th>
-            @Html.DisplayNameFor(model => model.WhenParked)
+            @Html.ActionLink("Parked", "Index", new { sortOrder = ViewBag.WhenParkedSortParm })
         </th>
         <th></th>
     </tr>
@@ -40,15 +35,9 @@
         <td>
             @Html.DisplayFor(modelItem => item.RegistrationNumber)
         </td>
-        @*<td>
-            @Html.DisplayFor(modelItem => item.Brand)
-        </td>*@
         <td>
             @Html.DisplayFor(modelItem => item.Color)
         </td>
-        @*<td>
-            @Html.DisplayFor(modelItem => item.Wheels)
-        </td>*@
         <td>
             @Html.DisplayFor(modelItem => item.WhenParked)
         </td>

@@ -19,6 +19,7 @@ namespace Garage_2._0.Controllers
         public ActionResult Index(string sortOrder)
         {
             ViewBag.TypeSortParm = String.IsNullOrEmpty(sortOrder) ? "VehicleType_desc" : "";
+            ViewBag.VehicleTypeSortParm = sortOrder == "VehicleType" ? "VehicleType_desc" : "VehicleType";
             ViewBag.RegistrationNumberSortParm = sortOrder == "RegistrationNumber" ? "RegistrationNumber_desc" : "RegistrationNumber";
             ViewBag.ColorSortParm = sortOrder == "Color" ? "Color_desc" : "Color";
             ViewBag.WhenParkedSortParm = sortOrder == "WhenParked" ? "WhenParked_desc" : "WhenParked";
@@ -26,6 +27,9 @@ namespace Garage_2._0.Controllers
                            select v;
             switch (sortOrder)
             {
+                case "VehicleType":
+                    vehicles = vehicles.OrderBy(v => v.VehicleType);
+                    break;
                 case "VehicleType_desc":
                     vehicles = vehicles.OrderByDescending(v => v.VehicleType);
                     break;
