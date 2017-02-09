@@ -9,6 +9,44 @@
 <p>
     @Html.ActionLink("Park a Vehicle", "Create")
 </p>
+
+@using (Html.BeginForm())
+{
+    <p>
+        Find by registration number or color: @Html.TextBox("SearchString")
+        <input type="submit" value="Search" />
+    </p>
+    @*<table class="table">
+        <tr>
+            <th>
+                Vehicle Type:
+            </th>
+            <th>
+                Registration number:
+            </th>
+            <th>
+                Color:
+            </th>
+            <th>
+            </th>
+        </tr>
+        <tr>
+            <td>
+                @Html.TextBox("SearchType")
+            </td>
+            <td>
+                @Html.TextBox("SearchReg")
+            </td>
+            <td>
+                @Html.TextBox("SearchColor")
+            </td>
+            <td>
+                <input type="submit" value="Search" />
+            </td>
+        </tr>
+    </table>*@
+
+}
 <table class="table">
     <tr>
         <th>
@@ -27,26 +65,27 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.VehicleType)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.RegistrationNumber)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Color)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.WhenParked)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+            {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.VehicleType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RegistrationNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Color)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.WhenParked)
+            </td>
+            <td>
+                @*@Html.ActionLink("Edit", "Edit", new { id=item.Id }) |*@
+                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Retrieve", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
 
 </table>

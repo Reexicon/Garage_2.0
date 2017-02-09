@@ -16,7 +16,7 @@ namespace Garage_2._0.Controllers
         private VehiclesContext db = new VehiclesContext();
 
         // GET: Vehicles
-        public ActionResult Index(string sortOrder)
+        public ActionResult Index(string sortOrder,string searchString)
         {
             ViewBag.TypeSortParm = String.IsNullOrEmpty(sortOrder) ? "VehicleType_desc" : "";
             ViewBag.VehicleTypeSortParm = sortOrder == "VehicleType" ? "VehicleType_desc" : "VehicleType";
@@ -25,6 +25,15 @@ namespace Garage_2._0.Controllers
             ViewBag.WhenParkedSortParm = sortOrder == "WhenParked" ? "WhenParked_desc" : "WhenParked";
             var vehicles = from v in db.Vehicles
                            select v;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                //vehicles = vehicles.Where(v => v.RegistrationNumber.Contains(searchString));
+
+                vehicles = vehicles.Where(v => v.RegistrationNumber.Contains(searchString)
+                                       || v.Color.Contains(searchString)
+                                       //|| v.Brand.Contains(searchString)
+                                       );
+            }
             switch (sortOrder)
             {
                 case "VehicleType":

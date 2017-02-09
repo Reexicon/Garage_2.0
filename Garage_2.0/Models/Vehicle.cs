@@ -6,7 +6,7 @@ using System.Web;
 namespace Garage_2._0.Models
 {
 
-    public enum Type {Car ,Airplane, Boat, Bike, Bus}
+    public enum Type { Airplane, Bike, Boat, Bus,Car }
 
     public class Vehicle
     {
