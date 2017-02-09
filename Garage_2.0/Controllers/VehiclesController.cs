@@ -16,9 +16,42 @@ namespace Garage_2._0.Controllers
         private VehiclesContext db = new VehiclesContext();
 
         // GET: Vehicles
-        public ActionResult Index()
+        public ActionResult Index(string sortOrder)
         {
-            return View(db.Vehicles.ToList());
+            ViewBag.TypeSortParm = String.IsNullOrEmpty(sortOrder) ? "VehicleType_desc" : "";
+            ViewBag.RegistrationNumberSortParm = sortOrder == "RegistrationNumber" ? "RegistrationNumber_desc" : "RegistrationNumber";
+            ViewBag.ColorSortParm = sortOrder == "Color" ? "Color_desc" : "Color";
+            ViewBag.WhenParkedSortParm = sortOrder == "WhenParked" ? "WhenParked_desc" : "WhenParked";
+            var vehicles = from v in db.Vehicles
+                           select v;
+            switch (sortOrder)
+            {
+                case "VehicleType_desc":
+                    vehicles = vehicles.OrderByDescending(v => v.VehicleType);
+                    break;
+                case "RegistrationNumber":
+                    vehicles = vehicles.OrderBy(v => v.RegistrationNumber);
+                    break;
+                case "RegistrationNumber_desc":
+                    vehicles = vehicles.OrderByDescending(v => v.RegistrationNumber);
+                    break;
+                case "Color":
+                    vehicles = vehicles.OrderBy(v => v.Color);
+                    break;
+                case "Color_desc":
+                    vehicles = vehicles.OrderByDescending(v => v.Color);
+                    break;
+                case "WhenParked":
+                    vehicles = vehicles.OrderBy(v => v.WhenParked);
+                    break;
+                case "WhenParked_desc":
+                    vehicles = vehicles.OrderByDescending(v => v.WhenParked);
+                    break;
+                default:
+                    vehicles = vehicles.OrderBy(v => v.VehicleType);
+                    break;
+            }
+            return View(vehicles.ToList());
         }
 
         // GET: Vehicles/Details/5
