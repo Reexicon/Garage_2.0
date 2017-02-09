@@ -176,8 +176,7 @@ namespace Garage_2._0.Controllers
         {
             ReceiptModel model = new ReceiptModel();
             model.Vehicle = vehicle;
-            int hours = Convert.ToInt32((DateTime.Now - vehicle.WhenParked).TotalHours);
-            model.Cost = (hours * 60);
+            model.Cost = Convert.ToInt32((DateTime.Now - vehicle.WhenParked).TotalMinutes);
 
             return View(model);
         }
