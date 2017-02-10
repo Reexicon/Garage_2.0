@@ -140,6 +140,8 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ReceiptModel.cs" />
+    <Compile Include="Models\StatisticsForVehicleTypesVM.cs" />
+    <Compile Include="Models\StatisticsViewModel.cs" />
     <Compile Include="Models\Vehicle.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
