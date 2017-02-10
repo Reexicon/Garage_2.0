@@ -69,6 +69,26 @@ EnumHelper.GetSelectList(typeof(Garage_2._0.Models.Type)),"All", new { @class = 
             {
         <tr>
             <td>
+                @switch (item.VehicleType.ToString())
+                {
+                case "Airplane":
+                <i class="fa fa-fighter-jet" aria-hidden="true" style="color:@item.Color;"></i>
+                break;
+                case "Bike":
+                <i class="fa fa-motorcycle" aria-hidden="true" style="color:@item.Color;"></i>
+                break;
+                case "Boat":
+                <i class="fa fa-ship" aria-hidden="true" style="color:@item.Color;"></i>
+                break;
+                case "Bus":
+                <i class="fa fa-bus" aria-hidden="true" style="color:@item.Color;"></i>
+                break;
+                case "Car":
+                <i class="fa fa-car" aria-hidden="true" style="color:@item.Color;"></i>
+                break;
+                default:
+                break;
+                }
                 @Html.DisplayFor(modelItem => item.VehicleType)
             </td>
             <td>

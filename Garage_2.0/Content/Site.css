@@ -22,3 +22,15 @@ select,
 textarea {
     max-width: 280px;
 }
+tr:nth-child(odd) {
+    background-color:#f3f3f3;
+
+}
+tr:nth-child(even) {
+    background-color:#f0f0f0;
+
+}
+tr:hover{
+    background-color:#e2e2e2;
+    
+}
