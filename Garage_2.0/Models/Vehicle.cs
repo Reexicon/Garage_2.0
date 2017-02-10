@@ -14,17 +14,18 @@ namespace Garage_2._0.Models
         
 
         public int Id { get; set; }
-        [RegularExpression(@"^[A-Z]{3}[0-9]{3}")]
+
+        [RegularExpression(@"^[A-Z]{3}[0-9]{3}", ErrorMessage = "The Input should be CCCNNN <br> C = Char N = Number")]
         [Display(Name = "Registration Number")]
         public string RegistrationNumber { get; set; }
         [Display(Name = "Vehicle Type")]
         public Type VehicleType { get; set; }
-        [StringLength(12, MinimumLength = 3)]
+        [StringLength(12, MinimumLength = 3, ErrorMessage ="Minimum 3 Char and Maximum 12 Char")]
         public string Brand { get; set; }
-        [RegularExpression(@"^[A-Za-z0-9'-']{3,10}")]
+        [RegularExpression(@"^[A-Za-z0-9'-']{3,10}", ErrorMessage ="Minimum 3 Char and Maximum 10 Char")]
         [StringLength(10, MinimumLength = 3)]
         public string Color { get; set; }
-        [Range(0,50)]
+        [Range(0,50, ErrorMessage ="Number of Wheels could be 0 to 50")]
         public int Wheels { get; set; }
         [Display(Name = "When Parked")]
         public DateTime WhenParked { get; set; }
