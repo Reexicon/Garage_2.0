@@ -1,0 +1,87 @@
+﻿@model IEnumerable<Garage_2._0.Models.StatisticsForVehicleTypesVM>
+
+@{
+    ViewBag.Title = "Statistics";
+}
+
+<h2>@ViewBag.Title</h2>
+
+
+<table class="table" width="600">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.VehicleType )
+        </th>
+        <th class="noEmployees">
+            @Html.DisplayNameFor(model => model.QuantityByType)
+        </th>
+
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td width="400">
+                @Html.DisplayFor(modelItem => item.VehicleType )
+            </td>
+            <td class="noVehicles">
+                <span class="SpannoVehicles">
+                    @Html.DisplayFor(modelItem => item.QuantityByType)
+                </span>
+                
+                @for (int i = 0; i < item.QuantityByType; i++)
+                {
+
+                    if (i > 5)
+                    {
+                        <i class="fa fa-plus" aria-hidden="true"></i>
+                        break;
+                    }
+                    switch (item.VehicleType.ToString())
+                    {
+                        case "Airplane":
+                            <i class="fa fa-fighter-jet" aria-hidden="true"></i>
+                            break;
+                        case "Bike":
+                            <i class="fa fa-motorcycle" aria-hidden="true"></i>
+                            break;
+                        case "Boat":
+                            <i class="fa fa-ship" aria-hidden="true"></i>
+                            break;
+                        case "Bus":
+                            <i class="fa fa-bus" aria-hidden="true"></i>
+                            break;
+                        case "Car":
+                            <i class="fa fa-car" aria-hidden="true"></i>
+                            break;
+                        default:
+                            break;
+                    }
+                }
+
+            </td>
+        </tr>
+    }
+    <tr>
+        <th>
+           Total number of wheels in the garage:
+        </th>
+        <td>
+           @ViewBag.SumOfWheels
+        </td>
+        </tr>
+    <tr>
+        <th>
+            Monetary value of parked vehicles in total:
+        </th>
+        <td>
+            @ViewBag.SumOfMinutes 
+        </td>
+    </tr>
+</table>
+
+<p>
+    
+    @Html.ActionLink("Back to Garage", "Index")
+</p>
+

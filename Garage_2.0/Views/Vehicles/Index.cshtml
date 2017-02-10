@@ -29,12 +29,11 @@
         </tr>
         <tr>
             <td>
-@foreach (var item in Model)
-{
+
                 @Html.DropDownList("SearchType",
 EnumHelper.GetSelectList(typeof(Garage_2._0.Models.Type)),"All", new { @class = "" })
-    break;
-}
+
+
             </td>
             <td>
                 @Html.TextBox("SearchReg")
