@@ -134,9 +134,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201702081458063_init.cs" />
-    <Compile Include="Migrations\201702081458063_init.Designer.cs">
-      <DependentUpon>201702081458063_init.cs</DependentUpon>
+    <Compile Include="Migrations\201702091421483_init.cs" />
+    <Compile Include="Migrations\201702091421483_init.Designer.cs">
+      <DependentUpon>201702091421483_init.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201702100751548_Regex.cs" />
+    <Compile Include="Migrations\201702100751548_Regex.Designer.cs">
+      <DependentUpon>201702100751548_Regex.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Vehicle.cs" />
@@ -195,8 +199,11 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201702081458063_init.resx">
-      <DependentUpon>201702081458063_init.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201702091421483_init.resx">
+      <DependentUpon>201702091421483_init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702100751548_Regex.resx">
+      <DependentUpon>201702100751548_Regex.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

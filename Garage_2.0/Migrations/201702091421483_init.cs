@@ -14,8 +14,8 @@ namespace Garage_2._0.Migrations
                         Id = c.Int(nullable: false, identity: true),
                         RegistrationNumber = c.String(),
                         VehicleType = c.Int(nullable: false),
-                        Brand = c.String(),
-                        Color = c.String(),
+                        Brand = c.String(maxLength: 12),
+                        Color = c.String(maxLength: 10),
                         Wheels = c.Int(nullable: false),
                         WhenParked = c.DateTime(nullable: false),
                     })
