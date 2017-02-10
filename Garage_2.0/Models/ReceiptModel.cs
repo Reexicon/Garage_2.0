@@ -8,7 +8,8 @@ namespace Garage_2._0.Models
 {
     public class ReceiptModel
     {
-        public int Cost { get; set; }
+        [Display(Name = "Total")]
+        public string Cost { get; set; }
         public Vehicle Vehicle { get; set; }
 
     }

@@ -80,6 +80,32 @@ namespace Garage_2._0.Controllers
             return View(vehicles.ToList());
         }
 
+        // GET: Departments Summary
+        public ActionResult Statistics()
+        {
+
+            var model = db.Vehicles.GroupBy(x => x.VehicleType)
+                .Select(x => new StatisticsForVehicleTypesVM
+                {
+                    VehicleType = x.Key,
+                    QuantityByType = x.Distinct().Count()
+                });
+            var vehicles = from v in db.Vehicles
+                           select v;
+            int SumOfWheels = 0;
+            double SumOfMinutes = 0;
+            foreach (var vehicle in vehicles)
+            {
+                SumOfWheels += vehicle.Wheels;
+                SumOfMinutes += (DateTime.Now - vehicle.WhenParked).TotalMinutes;
+            }
+
+            ViewBag.SumOfWheels = SumOfWheels;
+            ViewBag.SumOfMinutes = Convert.ToInt32(SumOfMinutes).ToString("C", System.Globalization.CultureInfo.CurrentCulture);
+
+            return View(model);
+        }
+
         // GET: Vehicles/Details/5
         public ActionResult Details(int? id)
         {
@@ -181,7 +207,7 @@ namespace Garage_2._0.Controllers
         {
             ReceiptModel model = new ReceiptModel();
             model.Vehicle = vehicle;
-            model.Cost = Convert.ToInt32((DateTime.Now - vehicle.WhenParked).TotalMinutes);
+            model.Cost = Convert.ToInt32((DateTime.Now - vehicle.WhenParked).TotalMinutes).ToString("C", System.Globalization.CultureInfo.CurrentCulture);
 
             return View(model);
         }
