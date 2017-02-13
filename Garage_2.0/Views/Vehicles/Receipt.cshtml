@@ -3,71 +3,191 @@
 @{
     ViewBag.Title = "Receipt";
 }
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Garage 2.0</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link rel="stylesheet" href="~/Content/font-awesome-4.7.0/css/font-awesome.min.css">
+</head>
+<body class="Receipt">
 
-<h2>@ViewBag.Title</h2>
+    <div class="container">
+        <div class="row">
+            <div class="well col-xs-10 col-sm-10 col-md-6 col-xs-offset-1 col-sm-offset-1 col-md-offset-3">
+                <div class="row">
+                    <div class="col-xs-6 col-sm-6 col-md-6">
+                        <address>
+                            <strong>Garage 2.0</strong>
+                            <br>
+                            Årstaängsvägen 9
+                            <br>
+                            117 43 Stockholm
+                            <br>
+                            <abbr title="Phone">P:</abbr>+46 (0)10-471 10 60
+                        </address>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 text-right">
+                        <p>
+                            <em>Date: @DateTime.Now.ToString("MMMM dd, yyyy")</em>
+                        </p>
+                        <p>
+                            <em>Receipt #: 0000015</em>
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="text-center">
+                        <img src="http://www.garagedoorrepairsmithtown.com/wp-content/uploads/2015/12/garage1.png" alt="Garage 2.0" width="180" height="180">
+                        <h1>Receipt</h1>
+                    </div>
+                    </span>
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Vehicle</th>
+                                <th>Parked</th>
+                                <th class="text-center">Price</th>
+                                <th class="text-center">Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="col-md-7">
+                                    <em>
+                                        @Html.DisplayFor(model => model.Vehicle.RegistrationNumber)
+                                        @Html.DisplayFor(model => model.Vehicle.VehicleType)
+                                        @Html.DisplayFor(model => model.Vehicle.Brand)
+                                        @Html.DisplayFor(model => model.Vehicle.Color)
+                                    </em></h4>
+                                </td>
+                                <td class="col-md-3">@Html.DisplayFor(model => model.Vehicle.WhenParked)</td>
+                                <td class="col-md-1 text-center">@Html.DisplayFor(model => model.Cost)</td>
+                                <td class="col-md-1 text-center">@Html.DisplayFor(model => model.Cost)</td>
+                            </tr>
 
-<div>
-    <h4>Vehicle</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Vehicle.RegistrationNumber )
-        </dt>
+                            <tr>
+                                <td>   </td>
+                                <td>   </td>
+                                <td class="text-right">
+                                    <p>
+                                        <strong>Subtotal: </strong>
+                                    </p>
+                                    <p>
+                                        <strong>Tax: </strong>
+                                    </p>
+                                </td>
+                                <td class="text-center">
+                                    <p>
+                                        <strong>-</strong>
+                                    </p>
+                                    <p>
+                                        <strong>-</strong>
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>   </td>
+                                <td>   </td>
+                                <td class="text-right"><h4><strong>Total: </strong></h4></td>
+                                <td class="text-center text-danger"><h4><strong>@Html.DisplayFor(model => model.Cost)</strong></h4></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div style="text-align:center;">
+                        <h1 style="text-align:center;">
+                            Thank you for your business!
+                        </h1>
+                        <button onclick="myFunction()">Print receipt</button>
 
-        <dd>
-            @Html.DisplayFor(model => model.Vehicle.RegistrationNumber)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Vehicle.VehicleType)
-        </dt>
+                    </div>
+                </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.Vehicle.VehicleType)
-        </dd>
+            </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Vehicle.Brand)
-        </dt>
+        </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.Vehicle.Brand)
-        </dd>
+        <div style="text-align:center;">
+            <span class="buttonspan">
+                @Html.ActionLink("Back to Garage", "Index")
+            </span>
+        </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Vehicle.Color)
-        </dt>
+        @*<h2>@ViewBag.Title</h2>*@
 
-        <dd>
-            @Html.DisplayFor(model => model.Vehicle.Color)
-        </dd>
+        @*<div class="divfooter tblShadow">
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Vehicle.Wheels)
-        </dt>
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Vehicle.RegistrationNumber)
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Vehicle.Wheels)
-        </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.Vehicle.RegistrationNumber)
+                    </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Vehicle.WhenParked)
-        </dt>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Vehicle.VehicleType)
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Vehicle.WhenParked)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Cost )
-        </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Vehicle.VehicleType)
+                    </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Cost)
-        </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Vehicle.Brand)
+                    </dt>
 
-    </dl>
-</div>
-<p>
-    
-    @Html.ActionLink("Back to Garage", "Index")
-</p>
+                    <dd>
+                        @Html.DisplayFor(model => model.Vehicle.Brand)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Vehicle.Color)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Vehicle.Color)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Vehicle.Wheels)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Vehicle.Wheels)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Vehicle.WhenParked)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Vehicle.WhenParked)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Cost)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Cost)
+                    </dd>
+
+                </dl>
+            </div>
+            <br />*@
+        <script>
+function myFunction() {
+    window.print();
+}
+        </script>
+
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+
+</body>
+</html>
