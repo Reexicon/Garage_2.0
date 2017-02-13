@@ -21,10 +21,10 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Vehicles")</li>
+                    @*<li>@Html.ActionLink("Home", "Index", "Vehicles")</li>*@
                     @*<li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>*@
-                    <li>@Html.ActionLink("Garage", "Index", "Vehicles")</li>
+                    <li>@Html.ActionLink("Park a Vehicle", "Create", "Vehicles")</li>
                     <li>@Html.ActionLink("Statistics", "Statistics", "Vehicles")</li>
                 </ul>
             </div>
@@ -32,9 +32,11 @@
     </div>
     <div class="container body-content">
         @RenderBody()
-        <hr />
         <footer>
+            <div class="divfooter tblShadow">
             <p>&copy; @DateTime.Now.Year - Garage 2.0</p>
+                </div>
+
         </footer>
     </div>
 
