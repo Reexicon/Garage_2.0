@@ -8,18 +8,34 @@ using System.Web;
 using System.Web.Mvc;
 using Garage_2._0.DAL;
 using Garage_2._0.Models;
-
 namespace Garage_2._0.Controllers
 {
     
    
     public class VehiclesController : Controller
     {
+        const int MaxNumberVehicles = 35;
         private VehiclesContext db = new VehiclesContext();
 
         // GET: Vehicles
         public ActionResult Index(string sortOrder,string searchReg,string searchColor, Models.Type? searchType)
         {
+            int numberOfVehicles = db.Vehicles.Count();
+
+
+            //if (MaxNumberVehicles > numberOfVehicles)
+            //{
+            //    ViewBag.NumberOfVehicles = $"The Garage have {numberOfVehicles} of max {MaxNumberVehicles}";
+            //    ViewBag.Color = "Blue";
+            //}
+            //else
+            //{
+            //    ViewBag.NumberOfVehicles = $"The Garage is FULL {MaxNumberVehicles} Vehicles";
+            //    ViewBag.Color = "Red";
+            //}
+
+            numberVehicleMessage();
+
             ViewBag.TypeSortParm = String.IsNullOrEmpty(sortOrder) ? "VehicleType_desc" : "";
             ViewBag.VehicleTypeSortParm = sortOrder == "VehicleType" ? "VehicleType_desc" : "VehicleType";
             ViewBag.RegistrationNumberSortParm = sortOrder == "RegistrationNumber" ? "RegistrationNumber_desc" : "RegistrationNumber";
@@ -115,7 +131,11 @@ namespace Garage_2._0.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             Vehicle vehicle = db.Vehicles.Find(id);
+
+            ViewBag.payment = Math.Truncate((DateTime.Now - vehicle.WhenParked).TotalMinutes) + " Kronor";
+
             if (vehicle == null)
             {
                 return HttpNotFound();
@@ -126,6 +146,21 @@ namespace Garage_2._0.Controllers
         // GET: Vehicles/Create
         public ActionResult Create()
         {
+
+            numberVehicleMessage();
+
+            //int numberOfVehicles = db.Vehicles.Count();
+
+            //if (MaxNumberVehicles > numberOfVehicles)
+            //{
+            //    ViewBag.NumberOfVehicles = $"The Garage have {numberOfVehicles} of max {MaxNumberVehicles}";
+            //    ViewBag.Color = "Blue";
+            //}
+            //else
+            //{
+            //    ViewBag.NumberOfVehicles = $"The Garage is FULL {MaxNumberVehicles} Vehicles";
+            //    ViewBag.Color = "Red";
+            //}
             return View();
         }
 
@@ -136,15 +171,47 @@ namespace Garage_2._0.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,RegistrationNumber,VehicleType,Brand,Color,Wheels,WhenParked")] Vehicle vehicle)
         {
-            if (ModelState.IsValid)
+           
+            int numberOfVehicles = db.Vehicles.Count();
+
+            numberVehicleMessage();
+
+            //if (MaxNumberVehicles > numberOfVehicles)
+            //{
+            //    ViewBag.NumberOfVehicles = $"The Garage have {numberOfVehicles} of max {MaxNumberVehicles}";
+            //    ViewBag.Color = "Blue";
+            //}
+            //else
+            //{
+            //    ViewBag.NumberOfVehicles = $"The Garage is FULL {MaxNumberVehicles} Vehicles";
+            //    ViewBag.Color = "Red";
+            //}
+
+            if (ModelState.IsValid && (MaxNumberVehicles > numberOfVehicles))
             {
                 vehicle.WhenParked = DateTime.Now;
                 db.Vehicles.Add(vehicle);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
+           
             return View(vehicle);
+        }
+
+        private void numberVehicleMessage()
+        {
+            int numberOfVehicles = db.Vehicles.Count();
+
+            if (MaxNumberVehicles > numberOfVehicles)
+            {
+                ViewBag.NumberOfVehicles = $"The Garage have {numberOfVehicles} of max {MaxNumberVehicles} Vehicles";
+                ViewBag.Color = "Blue";
+            }
+            else
+            {
+                ViewBag.NumberOfVehicles = $"The Garage is FULL {MaxNumberVehicles} Vehicles";
+                ViewBag.Color = "Red";
+            }
         }
 
 

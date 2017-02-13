@@ -16,6 +16,9 @@
     white-space: normal;
 }
 
+.FULL {
+    color:red;
+}
 /* Set width on the form input elements since they're 100% wide by default */
 input,
 select,
