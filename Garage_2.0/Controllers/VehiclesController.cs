@@ -279,7 +279,7 @@ namespace Garage_2._0.Controllers
             model.Vehicle = vehicle;
             model.Cost = Convert.ToInt32((DateTime.Now - vehicle.WhenParked).TotalMinutes).ToString("C", System.Globalization.CultureInfo.CurrentCulture);
 
-            return View(model);
+            return PartialView(model);
         }
 
         protected override void Dispose(bool disposing)

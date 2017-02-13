@@ -101,3 +101,12 @@ body{
 .navbar-inverse .navbar-brand:hover {
     color: #7f715f;
 }
+.Receipt{
+
+    background-color:#FFFFFF;
+    background-image:none;
+
+}
+.SpannoVehicles{
+    margin-right:10px;
+}
