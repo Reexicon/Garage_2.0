@@ -150,18 +150,6 @@ namespace Garage_2._0.Controllers
 
             numberVehicleMessage();
 
-            //int numberOfVehicles = db.Vehicles.Count();
-
-            //if (MaxNumberVehicles > numberOfVehicles)
-            //{
-            //    ViewBag.NumberOfVehicles = $"The Garage have {numberOfVehicles} of max {MaxNumberVehicles}";
-            //    ViewBag.Color = "Blue";
-            //}
-            //else
-            //{
-            //    ViewBag.NumberOfVehicles = $"The Garage is FULL {MaxNumberVehicles} Vehicles";
-            //    ViewBag.Color = "Red";
-            //}
             return View();
         }
 
@@ -172,24 +160,14 @@ namespace Garage_2._0.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,RegistrationNumber,VehicleType,Brand,Color,Wheels,WhenParked")] Vehicle vehicle)
         {
-           
+            ViewBag.VehicleAdded = "";
             int numberOfVehicles = db.Vehicles.Count();
 
             numberVehicleMessage();
 
-            //if (MaxNumberVehicles > numberOfVehicles)
-            //{
-            //    ViewBag.NumberOfVehicles = $"The Garage have {numberOfVehicles} of max {MaxNumberVehicles}";
-            //    ViewBag.Color = "Blue";
-            //}
-            //else
-            //{
-            //    ViewBag.NumberOfVehicles = $"The Garage is FULL {MaxNumberVehicles} Vehicles";
-            //    ViewBag.Color = "Red";
-            //}
-
             if (ModelState.IsValid && (MaxNumberVehicles > numberOfVehicles))
             {
+                ViewBag.VehicleAdded = " The Vehicle is Parked";
                 vehicle.WhenParked = DateTime.Now;
                 db.Vehicles.Add(vehicle);
                 db.SaveChanges();
