@@ -7,13 +7,15 @@
 <h2>@ViewBag.Title</h2>
 
 <p>
-    @Html.ActionLink("Park a Vehicle", "Create")
+    <span class="buttonspan">
+        @Html.ActionLink("Park a Vehicle", "Create")
+    </span>
 </p>
 
 
 @using (Html.BeginForm("Index", "Vehicles", FormMethod.Get))
-    {
-    <table class="table">
+{
+    <table class="table tblShadow">
         <tr>
             <th>
                 Vehicle Type:
@@ -31,7 +33,7 @@
             <td>
 
                 @Html.DropDownList("SearchType",
-EnumHelper.GetSelectList(typeof(Garage_2._0.Models.Type)),"All", new { @class = "" })
+EnumHelper.GetSelectList(typeof(Garage_2._0.Models.Type)), "All", new { @class = "" })
 
 
             </td>
@@ -48,7 +50,7 @@ EnumHelper.GetSelectList(typeof(Garage_2._0.Models.Type)),"All", new { @class = 
     </table>
 
 }
-<table class="table">
+<table class="table tblShadow">
     <tr>
         <th>
             @Html.ActionLink("Vehicle Type", "Index", new { sortOrder = ViewBag.VehicleTypeSortParm, searchReg = ViewBag.SearchReg, searchColor = ViewBag.SearchColor, searchType = ViewBag.SearchType })
@@ -69,27 +71,31 @@ EnumHelper.GetSelectList(typeof(Garage_2._0.Models.Type)),"All", new { @class = 
             {
         <tr>
             <td>
-                @switch (item.VehicleType.ToString())
-                {
-                case "Airplane":
-                <i class="fa fa-fighter-jet" aria-hidden="true" style="color:@item.Color;"></i>
-                break;
-                case "Bike":
-                <i class="fa fa-motorcycle" aria-hidden="true" style="color:@item.Color;"></i>
-                break;
-                case "Boat":
-                <i class="fa fa-ship" aria-hidden="true" style="color:@item.Color;"></i>
-                break;
-                case "Bus":
-                <i class="fa fa-bus" aria-hidden="true" style="color:@item.Color;"></i>
-                break;
-                case "Car":
-                <i class="fa fa-car" aria-hidden="true" style="color:@item.Color;"></i>
-                break;
-                default:
-                break;
-                }
+                <span class="picholder">
+                    @switch (item.VehicleType.ToString())
+                    {
+                        case "Airplane":
+                            <i class="fa fa-fighter-jet" aria-hidden="true" style="color:@item.Color;"></i>
+                            break;
+                        case "Bike":
+                            <i class="fa fa-motorcycle" aria-hidden="true" style="color:@item.Color;"></i>
+                            break;
+                        case "Boat":
+                            <i class="fa fa-ship" aria-hidden="true" style="color:@item.Color;"></i>
+                            break;
+                        case "Bus":
+                            <i class="fa fa-bus" aria-hidden="true" style="color:@item.Color;"></i>
+                            break;
+                        case "Car":
+                            <i class="fa fa-car" aria-hidden="true" style="color:@item.Color;"></i>
+                            break;
+                        default:
+                            break;
+                    }
+                    </span>&nbsp;
+
                 @Html.DisplayFor(modelItem => item.VehicleType)
+
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.RegistrationNumber)
