@@ -11,15 +11,15 @@ using Garage_2._0.Models;
 
 namespace Garage_2._0.Controllers
 {
-    
-   
+
+
     public class VehiclesController : Controller
     {
         const int MaxNumberVehicles = 35;
         private VehiclesContext db = new VehiclesContext();
 
         // GET: Vehicles
-        public ActionResult Index(string sortOrder,string searchReg,string searchColor, Models.Type? searchType)
+        public ActionResult Index(string sortOrder, string searchReg, string searchColor, Models.Type? searchType)
         {
             int numberOfVehicles = db.Vehicles.Count();
 
@@ -63,7 +63,7 @@ namespace Garage_2._0.Controllers
             if (searchType != null)
             {
                 vehicles = vehicles.Where(v => v.VehicleType == searchType);
-                                       
+
             }
 
             switch (sortOrder)
@@ -165,7 +165,7 @@ namespace Garage_2._0.Controllers
 
             numberVehicleMessage();
 
-            if (ModelState.IsValid && (MaxNumberVehicles > numberOfVehicles))
+            if (ModelState.IsValid && (MaxNumberVehicles > numberOfVehicles && UniqRegistrationNumber(vehicle.RegistrationNumber)))
             {
                 ViewBag.VehicleAdded = " The Vehicle is Parked";
                 vehicle.WhenParked = DateTime.Now;
@@ -173,8 +173,20 @@ namespace Garage_2._0.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-           
+
             return View(vehicle);
+        }
+
+        private bool UniqRegistrationNumber(string registrationNumber)
+        {
+            var uniqVehicle = db.Vehicles.Where(v => v.RegistrationNumber == registrationNumber).Count() == 0;
+
+            if (!uniqVehicle)
+            {
+                ViewBag.NumberOfVehicles = $"A Vehicle with {registrationNumber} already exist";
+                ViewBag.Color = "Red";
+            }
+            return uniqVehicle;
         }
 
         private void numberVehicleMessage()
