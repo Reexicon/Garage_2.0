@@ -158,7 +158,7 @@ namespace Garage_2._0.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,RegistrationNumber,VehicleType,Brand,Color,Wheels,WhenParked")] Vehicle vehicle)
+        public ActionResult Create([Bind(Include = "Id,RegistrationNumber,VehicleType,Brand,Model,Color,Wheels,WhenParked")] Vehicle vehicle)
         {
             ViewBag.VehicleAdded = "";
             int numberOfVehicles = db.Vehicles.Count();
@@ -191,51 +191,53 @@ namespace Garage_2._0.Controllers
 
         private void numberVehicleMessage()
         {
-            int numberOfVehicles = db.Vehicles.Count();
 
+            int numberOfVehicles = db.Vehicles.Count();
             if (MaxNumberVehicles > numberOfVehicles)
             {
                 ViewBag.NumberOfVehicles = $"The Garage have {numberOfVehicles} of max {MaxNumberVehicles} Vehicles";
                 ViewBag.Color = "Blue";
+                ViewBag.GarageIsFull = false;
             }
             else
             {
                 ViewBag.NumberOfVehicles = $"The Garage is FULL {MaxNumberVehicles} Vehicles";
                 ViewBag.Color = "Red";
+                ViewBag.GarageIsFull = true;
             }
         }
 
 
-        //// GET: Vehicles/Edit/5
-        //public ActionResult Edit(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    Vehicle vehicle = db.Vehicles.Find(id);
-        //    if (vehicle == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    return View(vehicle);
-        //}
+        // GET: Vehicles/Edit/5
+        public ActionResult Edit(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Vehicle vehicle = db.Vehicles.Find(id);
+            if (vehicle == null)
+            {
+                return HttpNotFound();
+            }
+            return View(vehicle);
+        }
 
-        //// POST: Vehicles/Edit/5
-        //// To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        //// more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Edit([Bind(Include = "Id,RegistrationNumber,VehicleType,Brand,Color,Wheels,WhenParked")] Vehicle vehicle)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        db.Entry(vehicle).State = EntityState.Modified;
-        //        db.SaveChanges();
-        //        return RedirectToAction("Index");
-        //    }
-        //    return View(vehicle);
-        //}
+        // POST: Vehicles/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit([Bind(Include = "Id,RegistrationNumber,VehicleType,Brand,Model,Color,Wheels,WhenParked")] Vehicle vehicle)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(vehicle).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(vehicle);
+        }
 
         // GET: Vehicles/Delete/5
         public ActionResult Delete(int? id)

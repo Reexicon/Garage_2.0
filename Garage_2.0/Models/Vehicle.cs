@@ -22,12 +22,14 @@ namespace Garage_2._0.Models
         public Type VehicleType { get; set; }
         [StringLength(12, MinimumLength = 3, ErrorMessage ="Minimum 3 Char and Maximum 12 Char")]
         public string Brand { get; set; }
-        [RegularExpression(@"^[A-Za-z0-9'-']{3,10}", ErrorMessage ="Minimum 3 Char and Maximum 10 Char")]
-        [StringLength(10, MinimumLength = 3)]
+        [StringLength(12, MinimumLength = 3, ErrorMessage = "Minimum 3 Char and Maximum 12 Char")]
+        public string Model { get; set; }
+        [StringLength(10, MinimumLength = 3, ErrorMessage = "Minimum 3 Char and Maximum 12 Char")]
         public string Color { get; set; }
         [Range(0,50, ErrorMessage ="Number of Wheels could be 0 to 50")]
         public int Wheels { get; set; }
         [Display(Name = "When Parked")]
+        [DisplayFormat(DataFormatString = "{0:HH:mm - yyyy MMMM dd}")]
         public DateTime WhenParked { get; set; }
     }
 }
