@@ -29,7 +29,6 @@ namespace Garage_2._0.Migrations
             //
             var vehicleTypes = new VehicleType[]  //Can be anonymous
             {
-
                 new VehicleType { TypeName = "Airplane" },
                 new VehicleType { TypeName = "Bike" },
                 new VehicleType { TypeName = "Boat" },

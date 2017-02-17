@@ -19,7 +19,7 @@ namespace Garage_2._0.Controllers
         private VehiclesContext db = new VehiclesContext();
 
         // GET: Vehicles
-        public ActionResult Index(string sortOrder, string searchReg, string searchColor, Models.Type? searchType)
+        public ActionResult Index(string sortOrder, string searchReg, string searchColor, int? VehicleTypeId = null)//, Models.Type? searchType
         {
             int numberOfVehicles = db.Vehicles.Count();
 
@@ -45,14 +45,19 @@ namespace Garage_2._0.Controllers
 
             ViewBag.SearchReg = searchReg;
             ViewBag.SearchColor = searchColor;
-            ViewBag.SearchType = searchType;
+            //ViewBag.SearchType = searchType;
+
+
+            ViewBag.VehicleTypeId = new SelectList(db.VehicleTypes , "Id", "TypeName", VehicleTypeId);
+
 
             var vehicles = from v in db.Vehicles
                            select v;
+
+
             if (!String.IsNullOrEmpty(searchReg))
             {
                 vehicles = vehicles.Where(v => v.RegistrationNumber.Contains(searchReg)
-                                       //|| v.Color.Contains(searchColor)
                                        );
             }
             if (!String.IsNullOrEmpty(searchColor))
@@ -60,19 +65,19 @@ namespace Garage_2._0.Controllers
                 vehicles = vehicles.Where(v => v.Color.Contains(searchColor)
                                        );
             }
-            if (searchType != null)
+            if (VehicleTypeId != null)
             {
-                //vehicles = vehicles.Where(v => v.VehicleType == searchType);
+                vehicles = vehicles.Where(v => v.VehicleType.Id == VehicleTypeId);
 
             }
 
             switch (sortOrder)
             {
                 case "VehicleType":
-                    vehicles = vehicles.OrderBy(v => v.VehicleType);
+                    vehicles = vehicles.OrderBy(v => v.VehicleType.TypeName );
                     break;
                 case "VehicleType_desc":
-                    vehicles = vehicles.OrderByDescending(v => v.VehicleType);
+                    vehicles = vehicles.OrderByDescending(v => v.VehicleType.TypeName );
                     break;
                 case "RegistrationNumber":
                     vehicles = vehicles.OrderBy(v => v.RegistrationNumber);
@@ -93,11 +98,11 @@ namespace Garage_2._0.Controllers
                     vehicles = vehicles.OrderByDescending(v => v.WhenParked);
                     break;
                 default:
-                    vehicles = vehicles.OrderBy(v => v.VehicleType);
+                    vehicles = vehicles.OrderBy(v => v.VehicleType.TypeName);
                     break;
             }
-            //return View(vehicles.ToList());
-            return View(vehicles);
+            return View(vehicles.ToList());
+            //return View(vehicles);
         }
 
         // GET: Departments Summary
