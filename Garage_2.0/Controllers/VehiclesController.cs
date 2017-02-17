@@ -101,6 +101,97 @@ namespace Garage_2._0.Controllers
                     vehicles = vehicles.OrderBy(v => v.VehicleType.TypeName);
                     break;
             }
+
+            return View(vehicles.ToList());
+            //return View(vehicles);
+        }
+
+        // GET: Vehicles
+        public ActionResult IndexDetailed(string sortOrder, string searchReg, string searchColor, int? VehicleTypeId = null)//, Models.Type? searchType
+        {
+            int numberOfVehicles = db.Vehicles.Count();
+
+
+            //if (MaxNumberVehicles > numberOfVehicles)
+            //{
+            //    ViewBag.NumberOfVehicles = $"The Garage have {numberOfVehicles} of max {MaxNumberVehicles}";
+            //    ViewBag.Color = "Blue";
+            //}
+            //else
+            //{
+            //    ViewBag.NumberOfVehicles = $"The Garage is FULL {MaxNumberVehicles} Vehicles";
+            //    ViewBag.Color = "Red";
+            //}
+
+            numberVehicleMessage();
+
+            ViewBag.TypeSortParm = String.IsNullOrEmpty(sortOrder) ? "VehicleType_desc" : "";
+            ViewBag.VehicleTypeSortParm = sortOrder == "VehicleType" ? "VehicleType_desc" : "VehicleType";
+            ViewBag.RegistrationNumberSortParm = sortOrder == "RegistrationNumber" ? "RegistrationNumber_desc" : "RegistrationNumber";
+            ViewBag.ColorSortParm = sortOrder == "Color" ? "Color_desc" : "Color";
+            ViewBag.WhenParkedSortParm = sortOrder == "WhenParked" ? "WhenParked_desc" : "WhenParked";
+
+            ViewBag.SearchReg = searchReg;
+            ViewBag.SearchColor = searchColor;
+            //ViewBag.SearchType = searchType;
+
+
+            ViewBag.VehicleTypeId = new SelectList(db.VehicleTypes, "Id", "TypeName", VehicleTypeId);
+            
+ 
+
+
+            var vehicles = from v in db.Vehicles
+                           select v;
+
+
+            if (!String.IsNullOrEmpty(searchReg))
+            {
+                vehicles = vehicles.Where(v => v.RegistrationNumber.Contains(searchReg)
+                                       );
+            }
+            if (!String.IsNullOrEmpty(searchColor))
+            {
+                vehicles = vehicles.Where(v => v.Color.Contains(searchColor)
+                                       );
+            }
+            if (VehicleTypeId != null)
+            {
+                vehicles = vehicles.Where(v => v.VehicleType.Id == VehicleTypeId);
+
+            }
+
+            switch (sortOrder)
+            {
+                case "VehicleType":
+                    vehicles = vehicles.OrderBy(v => v.VehicleType.TypeName);
+                    break;
+                case "VehicleType_desc":
+                    vehicles = vehicles.OrderByDescending(v => v.VehicleType.TypeName);
+                    break;
+                case "RegistrationNumber":
+                    vehicles = vehicles.OrderBy(v => v.RegistrationNumber);
+                    break;
+                case "RegistrationNumber_desc":
+                    vehicles = vehicles.OrderByDescending(v => v.RegistrationNumber);
+                    break;
+                case "Color":
+                    vehicles = vehicles.OrderBy(v => v.Color);
+                    break;
+                case "Color_desc":
+                    vehicles = vehicles.OrderByDescending(v => v.Color);
+                    break;
+                case "WhenParked":
+                    vehicles = vehicles.OrderBy(v => v.WhenParked);
+                    break;
+                case "WhenParked_desc":
+                    vehicles = vehicles.OrderByDescending(v => v.WhenParked);
+                    break;
+                default:
+                    vehicles = vehicles.OrderBy(v => v.VehicleType.TypeName);
+                    break;
+            }
+
             return View(vehicles.ToList());
             //return View(vehicles);
         }
@@ -141,7 +232,7 @@ namespace Garage_2._0.Controllers
 
             Vehicle vehicle = db.Vehicles.Find(id);
 
-            ViewBag.payment = Math.Truncate((DateTime.Now - vehicle.WhenParked).TotalMinutes) + " Kronor";
+            ViewBag.payment = Math.Truncate((DateTime.Now - vehicle.WhenParked).TotalMinutes) + " Kr";
 
             if (vehicle == null)
             {
@@ -233,6 +324,8 @@ namespace Garage_2._0.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.MemberId = new SelectList(db.Members, "Id", "FirstName", vehicle.MemberId);
+            ViewBag.VehicleTypeId = new SelectList(db.VehicleTypes, "Id", "TypeName", vehicle.VehicleTypeId);
             return View(vehicle);
         }
 
@@ -241,7 +334,7 @@ namespace Garage_2._0.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,RegistrationNumber,VehicleType,Brand,Model,Color,Wheels,WhenParked")] Vehicle vehicle)
+        public ActionResult Edit([Bind(Include = "Id,RegistrationNumber,VehicleType,Brand,Model,Color,Wheels,WhenParked,MemberId,VehicleTypeId")] Vehicle vehicle)
         {
             if (ModelState.IsValid)
             {
