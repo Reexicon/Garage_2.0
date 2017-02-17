@@ -18,8 +18,8 @@ namespace Garage_2._0.Models
         [RegularExpression(@"^[A-Z]{3}[0-9]{3}", ErrorMessage = "The Input should be CCCNNN <br> C = Char N = Number")]
         [Display(Name = "Registration Number")]
         public string RegistrationNumber { get; set; }
-        [Display(Name = "Vehicle Type")]
-        public Type VehicleType { get; set; }
+        //[Display(Name = "Vehicle Type")]
+        //public Type VehicleType { get; set; }
         [StringLength(12, MinimumLength = 3, ErrorMessage ="Minimum 3 Char and Maximum 12 Char")]
         public string Brand { get; set; }
         [StringLength(12, MinimumLength = 3, ErrorMessage = "Minimum 3 Char and Maximum 12 Char")]
@@ -31,5 +31,12 @@ namespace Garage_2._0.Models
         [Display(Name = "When Parked")]
         [DisplayFormat(DataFormatString = "{0:HH:mm - yyyy MMMM dd}")]
         public DateTime WhenParked { get; set; }
+        public int MemberId { get; set; }
+        public int VehicleTypeId { get; set; }
+
+
+        //Navigation  property
+        public virtual Member Member { get; set; }
+        public virtual VehicleType VehicleType { get; set; }
     }
 }

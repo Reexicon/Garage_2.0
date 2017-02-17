@@ -62,7 +62,7 @@ namespace Garage_2._0.Controllers
             }
             if (searchType != null)
             {
-                vehicles = vehicles.Where(v => v.VehicleType == searchType);
+                //vehicles = vehicles.Where(v => v.VehicleType == searchType);
 
             }
 
@@ -96,7 +96,8 @@ namespace Garage_2._0.Controllers
                     vehicles = vehicles.OrderBy(v => v.VehicleType);
                     break;
             }
-            return View(vehicles.ToList());
+            //return View(vehicles.ToList());
+            return View(vehicles);
         }
 
         // GET: Departments Summary
@@ -106,7 +107,7 @@ namespace Garage_2._0.Controllers
             var model = db.Vehicles.GroupBy(x => x.VehicleType)
                 .Select(x => new StatisticsForVehicleTypesVM
                 {
-                    VehicleType = x.Key,
+                    //VehicleType = x.Key,
                     QuantityByType = x.Distinct().Count()
                 });
             var vehicles = from v in db.Vehicles
