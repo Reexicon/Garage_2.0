@@ -24,17 +24,6 @@ namespace Garage_2._0.Controllers
             int numberOfVehicles = db.Vehicles.Count();
 
 
-            //if (MaxNumberVehicles > numberOfVehicles)
-            //{
-            //    ViewBag.NumberOfVehicles = $"The Garage have {numberOfVehicles} of max {MaxNumberVehicles}";
-            //    ViewBag.Color = "Blue";
-            //}
-            //else
-            //{
-            //    ViewBag.NumberOfVehicles = $"The Garage is FULL {MaxNumberVehicles} Vehicles";
-            //    ViewBag.Color = "Red";
-            //}
-
             numberVehicleMessage();
 
             ViewBag.TypeSortParm = String.IsNullOrEmpty(sortOrder) ? "VehicleType_desc" : "";
