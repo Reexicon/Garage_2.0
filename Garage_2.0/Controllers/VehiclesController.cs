@@ -154,6 +154,9 @@ namespace Garage_2._0.Controllers
         public ActionResult Create()
         {
 
+            ViewBag.MemberId = new SelectList(db.Members, "Id", "FirstName");
+            ViewBag.VehicleTypeId = new SelectList(db.VehicleTypes, "Id", "TypeName");
+
             numberVehicleMessage();
 
             return View();
@@ -164,7 +167,8 @@ namespace Garage_2._0.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,RegistrationNumber,VehicleType,Brand,Model,Color,Wheels,WhenParked")] Vehicle vehicle)
+        public ActionResult Create([Bind(Include = "Id,RegistrationNumber,Brand,Model,Color,Wheels,WhenParked,MemberId,VehicleTypeId")] Vehicle vehicle)
+        //public ActionResult Create([Bind(Include = "Id,RegistrationNumber,VehicleType,Brand,Model,Color,Wheels,WhenParked")] Vehicle vehicle)
         {
             ViewBag.VehicleAdded = "";
             int numberOfVehicles = db.Vehicles.Count();
@@ -179,6 +183,9 @@ namespace Garage_2._0.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+
+            ViewBag.MemberId = new SelectList(db.Members, "Id", "FirstName", vehicle.MemberId);
+            ViewBag.VehicleTypeId = new SelectList(db.VehicleTypes, "Id", "TypeName", vehicle.VehicleTypeId);
 
             return View(vehicle);
         }
