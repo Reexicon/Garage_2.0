@@ -16,9 +16,47 @@ namespace Garage_2._0.Controllers
         private VehiclesContext db = new VehiclesContext();
 
         // GET: Members
-        public ActionResult Index()
+        public ActionResult Index(string sortOrder, string searchFirstName, string searchLastName)
         {
-            return View(db.Members.ToList());
+
+            ViewBag.FirstNameSortParm = sortOrder == "FirstName" ? "FirstName_desc" : "FirstName";
+            ViewBag.LastNameSortParm = sortOrder == "LastName" ? "LastName_desc" : "LastName";
+
+            ViewBag.SearchFirstName = searchFirstName;
+            ViewBag.SearchLastName = searchLastName;
+
+            var members = from m in db.Members
+                           select m;
+
+            if (!String.IsNullOrEmpty(searchFirstName))
+            {
+                members = members.Where(m => m.FirstName.Contains(searchFirstName)
+                                       );
+            }
+            if (!String.IsNullOrEmpty(searchLastName))
+            {
+                members = members.Where(m => m.LastName.Contains(searchLastName)
+                                       );
+            }
+
+            switch (sortOrder)
+            {
+                case "FirstName":
+                    members = members.OrderBy(m => m.FirstName);
+                    break;
+                case "FirstName_desc":
+                    members = members.OrderByDescending(m => m.FirstName);
+                    break;
+                case "LastName":
+                    members = members.OrderBy(m => m.LastName);
+                    break;
+                case "LastName_desc":
+                    members = members.OrderByDescending(m => m.LastName);
+                    break;
+                default:
+                    break;
+            }
+            return View(members.ToList());
         }
 
         // GET: Members/Details/5
