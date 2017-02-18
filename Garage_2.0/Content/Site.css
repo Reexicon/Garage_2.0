@@ -69,9 +69,10 @@ body{
 }
 .divfooter{
     background-image: url('http://i.istockimg.com/file_thumbview_approve/52775982/3/stock-photo-52775982-abstract-background-of-white-light.jpg');
-    padding-top:8px;
+    padding-top:15px; /* Lena ökat från 8 till 15 för syns skull till members create */
     border-radius:5px;
     padding-left:15px;
+    padding-right:15px; /* Lena lagt till för vehiclelista i members detail */
     border:2px solid #808080;
 }
 .buttonspan:hover {

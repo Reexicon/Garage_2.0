@@ -1,17 +1,16 @@
 ﻿@model IEnumerable<Garage_2._0.Models.Member>
 
 @{
-    ViewBag.Title = "Members";
+    ViewBag.Title = "Members List";
 }
 
 <h2>@ViewBag.Title</h2>
 
 <p>
     <span class="buttonspan">
-        @Html.ActionLink("Register member", "Create")
+        @Html.ActionLink("Register Member", "Create")
     </span>
 </p>
-
 
 @using (Html.BeginForm("Index", "Members", FormMethod.Get))
 {
@@ -61,9 +60,9 @@
                 @Html.DisplayFor(modelItem => item.LastName)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                @Html.ActionLink("Change", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Vehicles", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Deregister", "Delete", new { id = item.Id })
             </td>
         </tr>
     }

@@ -1,18 +1,22 @@
 ﻿@model Garage_2._0.Models.Member
 
 @{
-    ViewBag.Title = "Create a new member";
+    ViewBag.Title = "Register Member";
 }
 
-<h2>Create</h2>
+<h2>@ViewBag.Title</h2>
 
-@using (Html.BeginForm()) 
+<p>
+    <span class="buttonspan">
+        @Html.ActionLink("Back to Members", "Index")
+    </span>
+</p>
+
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
-        <h4>Member</h4>
-        <hr />
+    <div class="form-horizontal divfooter tblShadow">
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
             @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -32,12 +36,8 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Register" class="btn btn-default" />
             </div>
         </div>
-    </div>
+    </div><br />
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
