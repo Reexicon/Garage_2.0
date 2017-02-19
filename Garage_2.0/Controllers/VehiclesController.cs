@@ -189,10 +189,11 @@ namespace Garage_2._0.Controllers
         public ActionResult Statistics()
         {
 
-            var model = db.Vehicles.GroupBy(x => x.VehicleType)
+            var model = db.Vehicles.GroupBy(x => x.VehicleType.TypeName)
                 .Select(x => new StatisticsForVehicleTypesVM
                 {
                     //VehicleType = x.Key,
+                    VehicleType = x.Key,
                     QuantityByType = x.Distinct().Count()
                 });
             var vehicles = from v in db.Vehicles
