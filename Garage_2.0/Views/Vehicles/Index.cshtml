@@ -53,9 +53,7 @@
 }
 <table class="table tblShadow">
     <tr>
-        <th>
-            Member
-        </th>
+
         <th>
             @Html.ActionLink("Vehicle Type", "Index", new { sortOrder = ViewBag.VehicleTypeSortParm, searchReg = ViewBag.SearchReg, searchColor = ViewBag.SearchColor, searchType = ViewBag.SearchType })
         </th>
@@ -75,6 +73,9 @@
             @Html.DisplayNameFor(model => model.Wheels)
         </th>*@
         <th>
+            Member
+        </th>
+        <th>
             @Html.ActionLink("Parked", "Index", new { sortOrder = ViewBag.WhenParkedSortParm, searchReg = ViewBag.SearchReg, searchColor = ViewBag.SearchColor, searchType = ViewBag.SearchType })
         </th>
         <th></th>
@@ -83,9 +84,7 @@
     @foreach (var item in Model)
             {
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Member.FirstName) @Html.DisplayFor(modelItem => item.Member.LastName)
-            </td>
+
             <td>
                 <span class="picholder">
                     @switch (item.VehicleType.TypeName.ToString())
@@ -126,6 +125,9 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Wheels)
             </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.Member.FullName) 
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.WhenParked)
 

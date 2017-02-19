@@ -235,7 +235,7 @@ namespace Garage_2._0.Controllers
         public ActionResult Create()
         {
 
-            ViewBag.MemberId = new SelectList(db.Members, "Id", "FirstName");
+            ViewBag.MemberId = new SelectList(db.Members, "Id", "FullName");
             ViewBag.VehicleTypeId = new SelectList(db.VehicleTypes, "Id", "TypeName");
 
             numberVehicleMessage();
@@ -314,7 +314,7 @@ namespace Garage_2._0.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.MemberId = new SelectList(db.Members, "Id", "FirstName", vehicle.MemberId);
+            ViewBag.MemberId = new SelectList(db.Members, "Id", "FullName", vehicle.MemberId);
             ViewBag.VehicleTypeId = new SelectList(db.VehicleTypes, "Id", "TypeName", vehicle.VehicleTypeId);
             return View(vehicle);
         }
