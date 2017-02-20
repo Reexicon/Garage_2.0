@@ -15,7 +15,7 @@ namespace Garage_2._0.Controllers
 
     public class VehiclesController : Controller
     {
-        const int MaxNumberVehicles = 14;
+        const int MaxNumberVehicles = 20;
         private VehiclesContext db = new VehiclesContext();
 
         // GET: Vehicles

@@ -15,11 +15,11 @@ namespace Garage_2._0.Models
 
         public int Id { get; set; }
 
+        [Required(ErrorMessage ="Registration Number is Required")]
         [RegularExpression(@"^[A-Z]{3}[0-9]{3}", ErrorMessage = "The Input should be CCCNNN <br> C = Char N = Number")]
         [Display(Name = "Registration Number")]
+       
         public string RegistrationNumber { get; set; }
-        //[Display(Name = "Vehicle Type")]
-        //public Type VehicleType { get; set; }
         [StringLength(12, MinimumLength = 3, ErrorMessage ="Minimum 3 Char and Maximum 12 Char")]
         public string Brand { get; set; }
         [StringLength(12, MinimumLength = 3, ErrorMessage = "Minimum 3 Char and Maximum 12 Char")]
