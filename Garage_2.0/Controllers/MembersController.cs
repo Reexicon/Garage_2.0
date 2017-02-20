@@ -16,14 +16,18 @@ namespace Garage_2._0.Controllers
         private VehiclesContext db = new VehiclesContext();
 
         // GET: Members
-        public ActionResult Index(string sortOrder, string searchFirstName, string searchLastName)
+        public ActionResult Index(string sortOrder, string searchFirstName, string searchLastName, string searchPhoneNo, string searchMail)
         {
 
             ViewBag.FirstNameSortParm = sortOrder == "FirstName" ? "FirstName_desc" : "FirstName";
             ViewBag.LastNameSortParm = sortOrder == "LastName" ? "LastName_desc" : "LastName";
+            ViewBag.LastNameSortParm = sortOrder == "PhoneNo" ? "PhoneNo_desc" : "PhoneNo";
+            ViewBag.LastNameSortParm = sortOrder == "Mail" ? "Mail_desc" : "Mail";
 
             ViewBag.SearchFirstName = searchFirstName;
             ViewBag.SearchLastName = searchLastName;
+            ViewBag.SearchLastName = searchPhoneNo;
+            ViewBag.SearchLastName = searchMail;
 
             var members = from m in db.Members
                            select m;
@@ -36,6 +40,18 @@ namespace Garage_2._0.Controllers
             if (!String.IsNullOrEmpty(searchLastName))
             {
                 members = members.Where(m => m.LastName.Contains(searchLastName)
+                                       );
+            }
+
+            if (!String.IsNullOrEmpty(searchPhoneNo))
+            {
+                members = members.Where(m => m.PhoneNo.Contains(searchPhoneNo)
+                                       );
+            }
+
+            if (!String.IsNullOrEmpty(searchMail))
+            {
+                members = members.Where(m => m.Mail.Contains(searchMail)
                                        );
             }
 
@@ -52,6 +68,18 @@ namespace Garage_2._0.Controllers
                     break;
                 case "LastName_desc":
                     members = members.OrderByDescending(m => m.LastName);
+                    break;
+                case "PhoneNo":
+                    members = members.OrderBy(m => m.PhoneNo);
+                    break;
+                case "PhoneNo_desc":
+                    members = members.OrderByDescending(m => m.PhoneNo);
+                    break;
+                case "Mail":
+                    members = members.OrderBy(m => m.Mail);
+                    break;
+                case "Mail_desc":
+                    members = members.OrderByDescending(m => m.Mail);
                     break;
                 default:
                     break;
@@ -85,7 +113,7 @@ namespace Garage_2._0.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,FirstName,LastName")] Member member)
+        public ActionResult Create([Bind(Include = "Id,FirstName,LastName,PhoneNo,Mail")] Member member)
         {
             if (ModelState.IsValid)
             {
@@ -117,7 +145,7 @@ namespace Garage_2._0.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,FirstName,LastName")] Member member)
+        public ActionResult Edit([Bind(Include = "Id,FirstName,LastName,PhoneNo,Mail")] Member member)
         {
             if (ModelState.IsValid)
             {
