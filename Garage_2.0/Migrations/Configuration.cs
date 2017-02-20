@@ -42,6 +42,8 @@ namespace Garage_2._0.Migrations
 
             var members = new Member[]
             {
+                new Member { FirstName = "John", LastName = "King", PhoneNo = "0704555555", Mail = "john@gitisfun.not"  },
+                new Member { FirstName = "Dimitris", LastName = "Hulk", PhoneNo = "0705666666", Mail = "dimitris@gitisfun.not"  }
                 new Member { FirstName = "David", LastName = "Duke", PhoneNo = "0701222222", Mail = "david@gitisfun.not" },
                 new Member { FirstName = "Leif", LastName = "Clown", PhoneNo = "0702333333", Mail = "leif@gitisfun.not" },
                 new Member { FirstName = "Lena", LastName = "Late", PhoneNo = "0703444444", Mail = "lena@gitisfun.not" },
@@ -62,7 +64,9 @@ namespace Garage_2._0.Migrations
                 new Vehicle { RegistrationNumber = "AAH118", VehicleTypeId= vehicleTypes[2].Id,MemberId= members[0].Id, Brand = "Viking Yacht", Model = "740GL", Color = "Brown", Wheels = 0, WhenParked = new DateTime(2016, 08, 08, 08, 08, 0, 0) },
                 new Vehicle { RegistrationNumber = "AAJ119", VehicleTypeId= vehicleTypes[0].Id,MemberId= members[0].Id, Brand = "Scania", Model = "740GL", Color = "Red", Wheels = 6, WhenParked = new DateTime(2016, 09, 09, 09, 09, 0, 0) },
                 new Vehicle { RegistrationNumber = "AAK121", VehicleTypeId= vehicleTypes[0].Id,MemberId= members[0].Id, Brand = "Volvo", Model = "740GL", Color = "Blue", Wheels = 8, WhenParked = new DateTime(2016, 10, 10, 10, 10, 0, 0) },
-                new Vehicle { RegistrationNumber = "AAL122", VehicleTypeId= vehicleTypes[1].Id,MemberId= members[1].Id, Brand = "Volvo", Model = "740GL", Color = "White", Wheels = 4, WhenParked = new DateTime(2016, 11, 11, 11, 11, 0, 0) }
+                new Vehicle { RegistrationNumber = "AAL122", VehicleTypeId= vehicleTypes[1].Id,MemberId= members[1].Id, Brand = "Volvo", Model = "740GL", Color = "White", Wheels = 4, WhenParked = new DateTime(2016, 11, 11, 11, 11, 0, 0) },
+                new Vehicle { RegistrationNumber = "SUP122", VehicleTypeId= vehicleTypes[1].Id,MemberId= members[3].Id, Brand = "Harley David", Model = "1200cc", Color = "Gold", Wheels = 3, WhenParked = new DateTime(2017, 01, 14, 08, 20, 0, 0) },
+                new Vehicle { RegistrationNumber = "JAS039", VehicleTypeId= vehicleTypes[0].Id,MemberId= members[4].Id, Brand = "JAS-39", Model = "Gripen", Color = "Silver", Wheels = 6, WhenParked = new DateTime(2017, 02, 13, 15, 23, 0, 0) }
             };
 
             context.Vehicles.AddRange(vehicles);
