@@ -21,13 +21,13 @@ namespace Garage_2._0.Controllers
 
             ViewBag.FirstNameSortParm = sortOrder == "FirstName" ? "FirstName_desc" : "FirstName";
             ViewBag.LastNameSortParm = sortOrder == "LastName" ? "LastName_desc" : "LastName";
-            ViewBag.LastNameSortParm = sortOrder == "PhoneNo" ? "PhoneNo_desc" : "PhoneNo";
-            ViewBag.LastNameSortParm = sortOrder == "Mail" ? "Mail_desc" : "Mail";
+            ViewBag.PhoneNoSortParm = sortOrder == "PhoneNo" ? "PhoneNo_desc" : "PhoneNo";
+            ViewBag.MailSortParm = sortOrder == "Mail" ? "Mail_desc" : "Mail";
 
             ViewBag.SearchFirstName = searchFirstName;
             ViewBag.SearchLastName = searchLastName;
-            ViewBag.SearchLastName = searchPhoneNo;
-            ViewBag.SearchLastName = searchMail;
+            ViewBag.SearchPhoneNo = searchPhoneNo;
+            ViewBag.SearchMail = searchMail;
 
             var members = from m in db.Members
                            select m;
