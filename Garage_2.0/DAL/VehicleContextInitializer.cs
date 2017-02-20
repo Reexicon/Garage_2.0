@@ -25,11 +25,11 @@ namespace Garage_2._0.DAL
 
             var members = new Member[]
             {
-                new Member { FirstName = "David", LastName = "Duke" },
-                new Member { FirstName = "Leif", LastName = "Clown" },
-                new Member { FirstName = "Lena", LastName = "Late" },
-                new Member { FirstName = "John", LastName = "King" },
-                new Member { FirstName = "Dimitris", LastName = "Hulk" }
+                new Member { FirstName = "John", LastName = "King", PhoneNo = "0704555555", Mail = "john@gitisfun.not"  },
+                new Member { FirstName = "Dimitris", LastName = "Hulk", PhoneNo = "0705666666", Mail = "dimitris@gitisfun.not"  }
+                new Member { FirstName = "David", LastName = "Duke", PhoneNo = "0701222222", Mail = "david@gitisfun.not" },
+                new Member { FirstName = "Leif", LastName = "Clown", PhoneNo = "0702333333", Mail = "leif@gitisfun.not" },
+                new Member { FirstName = "Lena", LastName = "Late", PhoneNo = "0703444444", Mail = "lena@gitisfun.not" },
             };
 
             context.Members.AddRange(members);
