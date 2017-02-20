@@ -31,7 +31,9 @@ namespace Garage_2._0.Models
         [Display(Name = "When Parked")]
         [DisplayFormat(DataFormatString = "{0:HH:mm - yyyy MMMM dd}")]
         public DateTime WhenParked { get; set; }
+        [Display(Name = "Member")]
         public int MemberId { get; set; }
+        [Display(Name = "Vehicle Type")]
         public int VehicleTypeId { get; set; }
 
 
