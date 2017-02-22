@@ -210,3 +210,6 @@ FakesAssemblies/
 GeneratedArtifacts/
 _Pvt_Extensions/
 ModelManifest.xml
+/Garage_2.0/Migrations/201702201212575_init75.cs
+/Garage_2.0/Migrations/201702201212575_init75.Designer.cs
+/Garage_2.0/Migrations/201702201212575_init75.resx
